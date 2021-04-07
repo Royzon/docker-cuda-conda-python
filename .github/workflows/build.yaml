@@ -47,7 +47,9 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           tags: justusschock/cuda-conda-python:${{ matrix.cuda_version }}-${{ matrix.python-version }}
-          build-args: CUDA_VERSION=${{ matrix.cuda-version }},PYTHON_VERSION=${{ matrix.python_version }}
+          build-args: |
+            CUDA_VERSION=${{ matrix.cuda-version }}
+            PYTHON_VERSION=${{ matrix.python_version }}
 
           
       - name: Image digest
