@@ -34,7 +34,7 @@ COPY adjust_conda_requirements.py adjust_conda_requirements.py
 COPY conda_requirements.yaml conda_requirements.yaml
 RUN conda install python=${PYTHON_VERSION} pyyaml -c anaconda -c conda-forge
 RUN echo ${CUDA_VERSION}
-RUN python adjust_conda_requirements.py --conda_file=conda_requirements.yaml --python_version=${PYTHON_VERSION} --cuda_version=${CUDA_VERSION}
+RUN python adjust_conda_requirements.py --conda_file=conda_requirements.yaml --python_version=${PYTHON_VERSION} --cuda_version=${CUDA_VERSION} && rm adjust_conda_requirements.py
 RUN conda env update --name=base --file conda_requirements.yaml && rm conda_requirements.yaml
 
 RUN pip install --upgrade pip
